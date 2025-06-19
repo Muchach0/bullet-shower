@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c78by7hc4fmwx"]
+[gd_scene load_steps=12 format=3 uid="uid://c78by7hc4fmwx"]
 
 [ext_resource type="Script" uid="uid://drujhi3kyvi2u" path="res://scripts/game_logic.gd" id="1_gqo0p"]
 [ext_resource type="PackedScene" uid="uid://b8esgykyvv3rj" path="res://prefab/bullets.tscn" id="2_w2sp8"]
@@ -8,6 +8,8 @@
 [ext_resource type="Theme" uid="uid://c6vho6rwvu82i" path="res://assets/font/my_theme.tres" id="6_jsacq"]
 [ext_resource type="Material" uid="uid://5slcagwnqqij" path="res://shaders/Glowing.tres" id="7_jsacq"]
 [ext_resource type="Texture2D" uid="uid://ce3i324ntjxh3" path="res://assets/star_2.png" id="8_w2sp8"]
+[ext_resource type="AudioStream" uid="uid://cv1200f5e67ib" path="res://assets/sounds/explosion.wav" id="9_gqo0p"]
+[ext_resource type="AudioStream" uid="uid://3i1neqbgutxm" path="res://assets/sounds/pickupCoin.wav" id="10_bwvm1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w2sp8"]
 radius = 40.9132
@@ -103,5 +105,13 @@ texture = ExtResource("8_w2sp8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Star"]
 shape = SubResource("CircleShape2D_w2sp8")
+
+[node name="AudioManager" type="Node" parent="."]
+
+[node name="ExplosionAudioStreamPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("9_gqo0p")
+
+[node name="WinAudioStreamPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("10_bwvm1")
 
 [connection signal="pressed" from="CanvasLayer/GameOverScreen/Button" to="." method="_on_button_restart_pressed"]

@@ -13,6 +13,9 @@ extends Node2D
 const INCREMENT_BULLET_COUNT = 50
 var current_level := 1
 
+# Audio part
+@onready var audio_explosion: AudioStreamPlayer = $AudioManager/ExplosionAudioStreamPlayer
+@onready var audio_win: AudioStreamPlayer = $AudioManager/WinAudioStreamPlayer
 
 func _ready() -> void:
     # Connect signals to the event bus
@@ -24,6 +27,8 @@ func _ready() -> void:
 func _on_player_hit(number_of_life: int) -> void:
     print("game_logic - Player hit! Remaining lives: %d" % number_of_life)
     # Handle player hit logic here, e.g., update UI or play sound
+
+    audio_explosion.play()
 
     if number_of_life <= 0:
         finish_game(false)
@@ -61,6 +66,8 @@ func finish_game(is_win:= true) -> void:
     print("Game finished.")
     # Handle game finish logic here, e.g., show a win screen or play a sound
     if is_win:
+        # Play win sound
+        audio_win.play()
         star.visible = false
         game_over_screen.get_node("Label").text = "You Win!"
         game_over_screen.get_node("Button").text = "Next Level"
