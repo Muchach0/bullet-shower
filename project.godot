@@ -1,0 +1,49 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Bullet Shower"
+config/tags=PackedStringArray("2d", "demo", "official", "performance")
+run/main_scene="res://scenes/shower.tscn"
+config/features=PackedStringArray("4.4")
+config/icon="uid://bctge3j1cttg3"
+
+[autoload]
+
+EventBus="*res://scripts/EventBus.gd"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+
+[display]
+
+window/size/viewport_width=704
+window/size/viewport_height=1280
+window/stretch/mode="viewport"
+
+[global_group]
+
+star=""
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

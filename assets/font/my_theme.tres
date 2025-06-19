@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c6vho6rwvu82i"]
+
+[ext_resource type="FontFile" uid="uid://cwypv4coonmk7" path="res://assets/font/Montserrat-Bold.ttf" id="1_hpgfv"]
+
+[resource]
+Button/colors/font_outline_color = Color(0.921569, 0.290196, 0.25098, 1)
+Button/fonts/font = ExtResource("1_hpgfv")
+Label/colors/font_outline_color = Color(0.92, 0.29, 0.25, 1)
+Label/constants/outline_size = 12
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_hpgfv")

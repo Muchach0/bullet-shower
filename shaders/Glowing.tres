@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://5slcagwnqqij"]
+
+[ext_resource type="Shader" uid="uid://c61d68dd7ytlf" path="res://shaders/glowing.gdshader" id="1_23cpm"]
+
+[resource]
+shader = ExtResource("1_23cpm")
+shader_parameter/speed = 1.2
+shader_parameter/tint = Vector4(1, 1, 0, 1)
+shader_parameter/span = 0.3

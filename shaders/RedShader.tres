@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bqobf4jtv2a83"]
+
+[ext_resource type="Shader" uid="uid://b5c5t0lvvi0jg" path="res://shaders/RedShader.gdshader" id="1_rlwwq"]
+
+[resource]
+shader = ExtResource("1_rlwwq")
+shader_parameter/enable_effect = false

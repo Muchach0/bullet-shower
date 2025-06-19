@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bhyke0c628ht"]
+
+[sub_resource type="Shader" id="1"]
+code = "shader_type canvas_item;
+uniform bool use_alt_color = false; // Boolean toggle
+
+// uniform float red = 1.0;
+// uniform float glow_strength : hint_range(0, 1);
+
+// void fragment(){
+	// See https://docs.godotengine.org/en/3.5/tutorials/shaders/your_first_shader/your_first_2d_shader.html
+	// COLOR = vec4(0.4, 0.6, 0.9, 1.0); // full blue color
+	// COLOR = vec4(UV, 0.5, 1.0); // COLOR Arc-en-ciel
+	// COLOR = texture(TEXTURE, UV); //read from texture
+	// COLOR.r = red; //set red channel to 1.0
+// }
+
+
+
+void fragment() {
+    vec4 tex_color = texture(TEXTURE, UV);
+	vec4 red_color = tex_color;
+	red_color.r = 1.0;
+	vec4 color = use_alt_color ? red_color : tex_color;
+    COLOR = color;
+}"
+
+[resource]
+shader = SubResource("1")
+shader_parameter/use_alt_color = false

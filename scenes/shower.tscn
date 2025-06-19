@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://c78by7hc4fmwx"]
+
+[ext_resource type="Script" uid="uid://drujhi3kyvi2u" path="res://scripts/game_logic.gd" id="1_gqo0p"]
+[ext_resource type="PackedScene" uid="uid://b8esgykyvv3rj" path="res://prefab/bullets.tscn" id="2_w2sp8"]
+[ext_resource type="PackedScene" uid="uid://bi37r66h3mog3" path="res://prefab/player_ship.tscn" id="3_w2sp8"]
+[ext_resource type="PackedScene" uid="uid://cgqr0bo81lrix" path="res://components/joystick/Joystick.tscn" id="5_oxv3j"]
+[ext_resource type="Texture2D" uid="uid://b0dydu31a7hx3" path="res://assets/background_space.png" id="6_8hejq"]
+[ext_resource type="Theme" uid="uid://c6vho6rwvu82i" path="res://assets/font/my_theme.tres" id="6_jsacq"]
+[ext_resource type="Material" uid="uid://5slcagwnqqij" path="res://shaders/Glowing.tres" id="7_jsacq"]
+[ext_resource type="Texture2D" uid="uid://ce3i324ntjxh3" path="res://assets/star_2.png" id="8_w2sp8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w2sp8"]
+radius = 40.9132
+
+[node name="Shower" type="Node2D"]
+script = ExtResource("1_gqo0p")
+
+[node name="Bullets" parent="." instance=ExtResource("2_w2sp8")]
+
+[node name="PlayerShip" parent="." instance=ExtResource("3_w2sp8")]
+position = Vector2(347, 815)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Joystick" parent="CanvasLayer" instance=ExtResource("5_oxv3j")]
+
+[node name="GameOverScreen" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_jsacq")
+text = "GAME OVER"
+
+[node name="Button" type="Button" parent="CanvasLayer/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = 4.0
+offset_right = 42.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("6_jsacq")
+text = "RESTART"
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -352.5
+offset_right = 352.5
+offset_bottom = 87.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme = ExtResource("6_jsacq")
+text = "Level: 1 - Bullets: 200"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Space_background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(352, 640)
+texture = ExtResource("6_8hejq")
+
+[node name="Star" type="Area2D" parent="." groups=["star"]]
+position = Vector2(347, 120)
+scale = Vector2(0.855469, 0.855469)
+
+[node name="StarSprite" type="Sprite2D" parent="Star"]
+material = ExtResource("7_jsacq")
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("8_w2sp8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Star"]
+shape = SubResource("CircleShape2D_w2sp8")
+
+[connection signal="pressed" from="CanvasLayer/GameOverScreen/Button" to="." method="_on_button_restart_pressed"]

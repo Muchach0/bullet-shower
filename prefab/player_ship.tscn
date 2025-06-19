@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi37r66h3mog3"]
+
+[ext_resource type="Material" uid="uid://bqobf4jtv2a83" path="res://shaders/RedShader.tres" id="1_03yoi"]
+[ext_resource type="Script" uid="uid://8ij4vk5yqwtt" path="res://scripts/player.gd" id="2_vgh7x"]
+[ext_resource type="Texture2D" uid="uid://bctge3j1cttg3" path="res://assets/ship.png" id="3_dhg42"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fvctb"]
+radius = 22.0
+height = 116.0
+
+[node name="PlayerShip" type="Area2D"]
+material = ExtResource("1_03yoi")
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_vgh7x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 0)
+shape = SubResource("CapsuleShape2D_fvctb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+rotation = -1.5708
+texture = ExtResource("3_dhg42")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
